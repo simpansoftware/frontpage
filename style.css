@@ -1,0 +1,29 @@
+body {
+    transition: background-image 1s ease-in-out;
+    height: 100vh;
+    margin: 0;
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.rectangle {
+    margin: auto;
+    height: 120px;
+    width: 400px;
+    background-color: #555;
+    border-radius: 25px;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    margin-top: 1%;
+    margin-left: 18%;
+}
+
+.filler {
+    height: 200px;
+}
