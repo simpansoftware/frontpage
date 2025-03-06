@@ -5,40 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frontpage</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="filler"></div>
     <div class="rectangle">
-    <h1>Frontpage</h1>
-    <form action="https://duckduckgo.com" method="get">
-        <input type="text" name="q" placeholder="Enter your search here..." required>
-        <button type="submit">Search</button>
-    </form>
+        <h1>Frontpage</h1>
+        <form action="https://duckduckgo.com" method="get">
+            <input type="text" name="q" placeholder="Enter your search here..." required>
+            <button type="submit">Search</button>
+        </form>
     </div>
     <input type="file" id="fileInput" accept="image/*">
 
-  <script>
-    const storedImage = localStorage.getItem('backgroundImage');
-    
-    if (storedImage) {
-      document.body.style.backgroundImage = `url(${storedImage})`;
-    }
-    const fileInput = document.getElementById('fileInput');
-    fileInput.addEventListener('change', function(event) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          const imageUrl = e.target.result;
-          document.body.style.backgroundImage = `url(${imageUrl})`;
-          localStorage.setItem('backgroundImage', imageUrl);
-        };
-        reader.readAsDataURL(file);
-      }
-    });
-  </script>
+    <script>
+        const storedImage = localStorage.getItem('backgroundImage');
+        if (storedImage) {
+            document.body.style.backgroundImage = `url(${storedImage})`;
+        }
+
+        const fileInput = document.getElementById('fileInput');
+        fileInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imageUrl = e.target.result;
+                    document.body.style.backgroundImage = `url(${imageUrl})`;
+                    localStorage.setItem('backgroundImage', imageUrl);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        let elementsVisible = true;
+        document.addEventListener('keydown', function(event) {
+            if (event.ctrlKey && event.altKey && event.key === 'h') {
+                const elements = document.body.querySelectorAll('*:not(script)');
+                elements.forEach(element => {
+                    element.classList.toggle('hidden');
+                });
+                elementsVisible = !elementsVisible;
+            }
+        });
+    </script>
 </body>
 </html>
