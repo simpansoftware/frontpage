@@ -58,15 +58,14 @@
             };
         }
 
-        let isHidden = false;
+        let elementsVisible = true;
         document.addEventListener('keydown', function(event) {
             if (event.ctrlKey && event.altKey && event.key === 'h') {
-                event.preventDefault();
-                const elements = document.body.children;
-                for (let i = 0; i < elements.length; i++) {
-                    elements[i].classList.toggle('hidden');
-                }
-                isHidden = !isHidden;
+                const elements = document.body.querySelectorAll('*:not(script)');
+                elements.forEach(element => {
+                    element.classList.toggle('hidden');
+                });
+                elementsVisible = !elementsVisible;
             }
         });
     </script>
