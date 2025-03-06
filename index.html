@@ -21,6 +21,7 @@
         const storedImage = localStorage.getItem('backgroundImage');
         if (storedImage) {
             document.body.style.backgroundImage = `url(${storedImage})`;
+            setRectangleBackground(storedImage);
         }
 
         const fileInput = document.getElementById('fileInput');
@@ -32,21 +33,27 @@
                     const imageUrl = e.target.result;
                     document.body.style.backgroundImage = `url(${imageUrl})`;
                     localStorage.setItem('backgroundImage', imageUrl);
+                    setRectangleBackground(imageUrl);
                 };
                 reader.readAsDataURL(file);
             }
         });
 
-        let elementsVisible = true;
-        document.addEventListener('keydown', function(event) {
-            if (event.ctrlKey && event.altKey && event.key === 'h') {
-                const elements = document.body.querySelectorAll('*:not(script)');
-                elements.forEach(element => {
-                    element.classList.toggle('hidden');
-                });
-                elementsVisible = !elementsVisible;
-            }
-        });
+        function setRectangleBackground(imageUrl) {
+            const img = new Image();
+            img.src = imageUrl;
+            img.onload = function() {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                ctx.drawImage(img, 0, 0);
+                const pixel = ctx.getImageData(img.width / 2, img.height / 2, 1, 1).data;
+                const darkenFactor = 0.6;
+                const darkenedColor = `rgb(${Math.floor(pixel[0] * darkenFactor)}, ${Math.floor(pixel[1] * darkenFactor)}, ${Math.floor(pixel[2] * darkenFactor)})`;
+                document.querySelector('.rectangle').style.backgroundColor = darkenedColor;
+            };
+        }
     </script>
 </body>
 </html>
