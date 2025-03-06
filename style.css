@@ -26,6 +26,7 @@ h1 {
 form {
     margin-top: 1%;
     margin-left: 18%;
+    font-family: "Inter", sans-serif;
 }
 
 .filler {
@@ -35,5 +36,6 @@ form {
 input[type="file"] {
     position: absolute;
     bottom: 20px;
-    left: 20px;
+    left: 20px;   
+    font-family: "Inter", sans-serif;
 }
