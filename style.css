@@ -5,6 +5,7 @@ body {
     background-size: cover;
     background-position: center;
     color: white;
+    font-family: "Inter", sans-serif;
 }
 
 .rectangle {
@@ -19,6 +20,7 @@ body {
 
 h1 {
     text-align: center;
+    font-weight: 575;
 }
 
 form {
