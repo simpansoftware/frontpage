@@ -39,3 +39,7 @@ input[type="file"] {
     left: 20px;   
     font-family: "Inter", sans-serif;
 }
+
+.hidden {
+    display: none;
+}
